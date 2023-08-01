@@ -234,7 +234,7 @@ VALUES
     (7, 39, 64, 20.75);
 
 
-/* Aufgabe 1 */
+/* Aufgabe aa */
 select Kunde.Kunde_ID, Kunde.Firma, COUNT(Rechnung.Rechnung_ID) as Anzahl
 From Rechnung
 right join  Kunde
@@ -242,7 +242,7 @@ on Kunde.Kunde_ID = Rechnung.Kunden_ID and MONTH(RechnungsDatum) = 9
 GROUP BY Kunde.Kunde_ID
 ORDER BY Anzahl DESC
 ;
-/* Anzahl der Produkte der Hersteller */
+/* Aufgabe ab */
 SELECT Hersteller.Firma , COUNT(Artikel.Artikel_ID) as Anzahl
 From Hersteller
 left join Artikel on Hersteller.Hersteller_ID = Artikel.Hersteller_ID
@@ -254,14 +254,14 @@ where Artikel.Hersteller_ID = Hersteller.hersteller_ID
 and Hersteller.Firma = 'Acme Electronics';
 
 
-/* Ändern aller Preise aller Produkte eines Herstellers */
+/* Aufgabe ac */
 
 update Artikel as a , Hersteller as h
 set a.Listenpreis = a.Listenpreis *1.045
 where h.Hersteller_ID = a.Hersteller_ID
 and h.Firma = 'Acme Electronics';
 
-
+/* Aufgabe ad*/
 select kunde.kunde_id, Kunde.Firma, a.Bezeichnung,
        sum(p.menge * p.Verkaufs_Einzelpreis) as Umsatz
 from kunde
