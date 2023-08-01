@@ -108,8 +108,8 @@ VALUES
     (8, '2023-10-02'),
     (7, '2023-10-09'),
     (1, '2023-10-15'),
-    (19, '2023-11-01'),
-    (3, '2023-11-07');
+    (19, '2023-11-01')
+    ;
 
 /* 40 Artikel */
 
@@ -262,4 +262,10 @@ where h.Hersteller_ID = a.Hersteller_ID
 and h.Firma = 'Acme Electronics';
 
 
-
+select kunde.kunde_id, Kunde.Firma, a.Bezeichnung,
+       sum(p.menge * p.Verkaufs_Einzelpreis) as Umsatz
+from kunde
+left join Rechnung R on Kunde.Kunde_ID = R.Kunden_ID
+left join Position P on R.Rechnung_ID = P.Rechnung_ID
+left join artikel a on P.Artikel_ID = a.Artikel_ID
+group by Kunde.Kunde_ID, Kunde.Firma, a.Bezeichnung;
