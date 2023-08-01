@@ -262,5 +262,4 @@ where h.Hersteller_ID = a.Hersteller_ID
 and h.Firma = 'Acme Electronics';
 
 
-select kunde.kunden_id, Hersteller.Bezeichnung,
-       sum(Position.menge * Position.)
+
