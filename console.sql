@@ -23,6 +23,26 @@ VALUES
     ('Musterunternehmen KG', 'Musterplatz 1', '98765', 'Musterhausen'),
     ('Stadtbeispiel GmbH', 'Hauptallee 55', '54321', 'Stadtbeispiel');
 
+INSERT INTO Kunde (Kunde_ID, Firma, Strasse, Plz, Ort) VALUES
+
+    (11, 'Celestial Creations', 'Astral Avenue 20', '67890', 'Himmelsstadt'),
+    (12, 'Enchanted Emporium', 'Magic Meadows 30', '11111', 'Zauberstadt'),
+    (13, 'Whimsical Wonders', 'Enchantment Road 40', '22222', 'Wunderland'),
+    (14, 'Enigma Euphoria', 'Enchanted Alley 50', '33333', 'Rätseldorf'),
+    (15, 'Mythical Marvels', 'Myth Street 60', '44444', 'Sagenstadt'),
+    (16, 'Wanderlust Treasures', 'Adventure Avenue 70', '55555', 'Abenteuerburg'),
+    (17, 'Dreamscape Delights', 'Dreamy Drive 80', '66666', 'Traumstadt'),
+    (18, 'Serendipity Empyrean', 'Serendipity Square 90', '77777', 'Glückshafen'),
+    (19, 'Wonderland Whimsy', 'Wonderland Lane 100', '88888', 'Wunderlandia'),
+    (20, 'Aurora Artistry', 'Stardust Street 120', '99999', 'Funkelstadt');
+
+
+
+
+
+
+
+Regenerate
 /* 10 Hersteller */
 
 create table Hersteller(
@@ -63,5 +83,3 @@ create table Position(
                          FOREIGN KEY (Artikel_ID) REFERENCES Artikel (Artikel_ID)
 
 );
-
-
