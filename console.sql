@@ -42,7 +42,7 @@ INSERT INTO Kunde (Kunde_ID, Firma, Strasse, Plz, Ort) VALUES
 
 
 
-Regenerate
+
 /* 10 Hersteller */
 
 create table Hersteller(
