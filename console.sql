@@ -1,3 +1,4 @@
+drop database dbs2018;
 create database dbs2018;
 use dbs2018;
 
@@ -167,7 +168,7 @@ VALUES (1, 'Paracetamol 500mg', 5.99),
 /* 50 Positionen */
 
 
-create table Position
+create table `Position`
 (
     Rechnung_ID int,
     Artikel_ID  int,
@@ -178,7 +179,7 @@ create table Position
 
 );
 
-INSERT INTO Position (Rechnung_ID, Artikel_ID, Menge, Listepreis)
+INSERT INTO `Position` (Rechnung_ID, Artikel_ID, Menge, Listepreis)
 VALUES
     (1, 25, 6, 10.50),
     (2, 10, 9, 20.75),
