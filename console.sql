@@ -50,3 +50,17 @@ create table Position(
                          FOREIGN KEY (Artikel_ID) REFERENCES Artikel (Artikel_ID)
 
 );
+
+-- Einfügen der Firmennamen
+
+INSERT INTO Hersteller (firma) VALUES
+                                   ('InnovateTech'),
+                                   ('Starlight Solutions'),
+                                   ('FusionX'),
+                                   ('Quantum Industries'),
+                                   ('Energon Power'),
+                                   ('TechVantage'),
+                                   ('Nexus Systems'),
+                                   ('Phoenix Innovations'),
+                                   ('Synergetic Solutions'),
+                                   ('AlphaCorp');
