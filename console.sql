@@ -78,7 +78,7 @@ VALUES (1, 'Paracetamol 500mg', 5.99),
        (9, 'Alendronate 70mg', 9.99),
        (9, 'Celecoxib 200mg', 8.49),
        (9, 'Ranitidin 150mg', 7.99),
-       (9, 'Metformin 500mg', 6.49)
+       (9, 'Metformin 500mg', 6.49),
        (10, 'Simvastatin 20mg', 9.99),
        (10, 'Doxycycline 100mg', 7.99),
        (10, 'Cyclobenzaprine 10mg', 6.49),
