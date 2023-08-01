@@ -50,6 +50,19 @@ create table Hersteller(
                            Firma varchar(255)
 
 );
+
+INSERT INTO Hersteller (Firma) VALUES
+                                   ('Acme Electronics'),
+                                   ('Techtronics Inc.'),
+                                   ('Globe Motors'),
+                                   ('PowerTech Solutions'),
+                                   ('Apex Appliances'),
+                                   ('Precision Tools Ltd.'),
+                                   ('MicroTech Innovations'),
+                                   ('AquaTech Systems'),
+                                   ('GreenEnergy Solutions'),
+                                   ('GlobalPharma Pharmaceuticals');
+
 /* 30 Rechnungen */
 
 
