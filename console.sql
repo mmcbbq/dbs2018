@@ -242,7 +242,7 @@ on Kunde.Kunde_ID = Rechnung.Kunden_ID and MONTH(RechnungsDatum) = 9
 GROUP BY Kunde.Kunde_ID
 ORDER BY Anzahl DESC
 ;
-/* Aufgabe ab */
+/* Anzahl der Produkte pro Hersteller */
 SELECT Hersteller.Firma , COUNT(Artikel.Artikel_ID) as Anzahl
 From Hersteller
 left join Artikel on Hersteller.Hersteller_ID = Artikel.Hersteller_ID
@@ -254,18 +254,82 @@ where Artikel.Hersteller_ID = Hersteller.hersteller_ID
 and Hersteller.Firma = 'Acme Electronics';
 
 
-/* Aufgabe ac */
+/* Aufgabe ab */
 
 update Artikel as a , Hersteller as h
 set a.Listenpreis = a.Listenpreis *1.045
 where h.Hersteller_ID = a.Hersteller_ID
 and h.Firma = 'Acme Electronics';
 
-/* Aufgabe ad*/
+/* Aufgabe ac*/
 select kunde.kunde_id, Kunde.Firma, a.Bezeichnung,
        sum(p.menge * p.Verkaufs_Einzelpreis) as Umsatz
 from kunde
 left join Rechnung R on Kunde.Kunde_ID = R.Kunden_ID
 left join Position P on R.Rechnung_ID = P.Rechnung_ID
 left join artikel a on P.Artikel_ID = a.Artikel_ID
-group by Kunde.Kunde_ID, Kunde.Firma, a.Bezeichnung;
+group by Kunde.Kunde_ID, Kunde.Firma, a.Bezeichnung
+;
+
+
+/*ba */
+
+create table Artikelgrruppe (
+    Artikelgruppe_ID int PRIMARY KEY auto_increment,
+    Artikelgruppenbezeichnung varchar(255)
+);
+
+Alter TABLE Artikel
+add COLUMN Artikelgruppe_id int,
+    add foreign key (Artikelgruppe_id)
+    references Artikelgrruppe(Artikelgruppe_ID);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* gesammt summe aller Rechnungen*/
+
+SELECT R.Rechnung_id, k.Firma,  sum(P.Verkaufs_Einzelpreis * P.menge) as Summe
+from Rechnung as R
+left join Position P on R.Rechnung_ID = P.Rechnung_ID
+left join Kunde as K on R.Kunden_ID = K.Kunde_ID
+group by P.Rechnung_ID
+order by Summe desc
+;
+/* Adressen der 10 besten Kunden */
+SELECT k.Firma, k.Strasse, k.plz, k.ort
+from Kunde as k
+left join Rechnung r on k.Kunde_ID = r.Kunden_ID
+left join position p on r.Rechnung_ID = p.Rechnung_ID
+group by k.Firma
+order by sum(P.Verkaufs_Einzelpreis * P.menge) desc
+limit 10
+;
+
+
+
+/* Anzahl der Bestellungen aller Kunden*/
+SELECT k.firma , count(R.rechnung_id) as Anzahl
+from Kunde as k
+left join Rechnung R on k.Kunde_ID = R.Kunden_ID
+group by k.firma
+order by Anzahl desc ,k.Firma asc  ;
+
+
+/* Alle Firmen in dem Plz bereich zwischen 30000 -39999*/
+SELECT k.firma, k.plz
+from Kunde as k
+where k.Plz between 50000 and 59999;
