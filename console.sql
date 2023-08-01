@@ -118,7 +118,7 @@ create table Artikel
     Artikel_ID    int PRIMARY KEY auto_increment,
     Hersteller_ID int,
     Bezeichnung   varchar(255),
-    Listenpreis   decimal,
+    Listenpreis   decimal(10,2),
     FOREIGN KEY (Hersteller_ID) REFERENCES Hersteller (Hersteller_ID)
 );
 
@@ -173,13 +173,14 @@ create table `Position`
     Rechnung_ID int,
     Artikel_ID  int,
     Menge int,
-    Listepreis  decimal,
+    Verkaufs_Einzelpreis  decimal(10,2),
+
     FOREIGN KEY (Rechnung_ID) REFERENCES Rechnung (Rechnung_ID),
     FOREIGN KEY (Artikel_ID) REFERENCES Artikel (Artikel_ID)
 
 );
 
-INSERT INTO `Position` (Rechnung_ID, Artikel_ID, Menge, Listepreis)
+INSERT INTO `Position` (Rechnung_ID, Artikel_ID, Menge, Verkaufs_Einzelpreis)
 VALUES
     (1, 25, 6, 10.50),
     (2, 10, 9, 20.75),
@@ -232,3 +233,34 @@ VALUES
     (2, 19, 88, 15.99),
     (7, 39, 64, 20.75);
 
+
+/* Aufgabe 1 */
+select Kunde.Kunde_ID, Kunde.Firma, COUNT(Rechnung.Rechnung_ID) as Anzahl
+From Rechnung
+right join  Kunde
+on Kunde.Kunde_ID = Rechnung.Kunden_ID and MONTH(RechnungsDatum) = 9
+GROUP BY Kunde.Kunde_ID
+ORDER BY Anzahl DESC
+;
+/* Anzahl der Produkte der Hersteller */
+SELECT Hersteller.Firma , COUNT(Artikel.Artikel_ID) as Anzahl
+From Hersteller
+left join Artikel on Hersteller.Hersteller_ID = Artikel.Hersteller_ID
+Group By Hersteller.Firma;
+/* Preise aller Produkte eines Herstellers */
+SELECT Artikel.Listenpreis, artikel.bezeichnung
+FROM artikel , hersteller
+where Artikel.Hersteller_ID = Hersteller.hersteller_ID
+and Hersteller.Firma = 'Acme Electronics';
+
+
+/* Ändern aller Preise aller Produkte eines Herstellers */
+
+update Artikel as a , Hersteller as h
+set a.Listenpreis = a.Listenpreis *1.045
+where h.Hersteller_ID = a.Hersteller_ID
+and h.Firma = 'Acme Electronics';
+
+
+select kunde.kunden_id, Hersteller.Bezeichnung,
+       sum(Position.menge * Position.)
